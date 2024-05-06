@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js"></script>
+  <script src="js/jquery-2.1.3.min.js"></script>
+  <title>じゃんけんゲーム</title>
+  <script>
+    function R_Click(p_janken_r) {
+        let janken = ['グー','チョキ','パー',];//変数"janken"のリストを作成、中身は「グー0」「チョキ1」「パー2」。
+        let janken_r = Math.floor( Math.random() * 3);//変数名janlen_rで「0」「1」「2」3パタン整数の乱数を作る。
+
+        let p_janken = ['グー','チョキ','パー'];//"プレイヤーのjanken"のリストを作成します。
+            //勝ち負けの判定機プログラムです
+            if (janken_r === p_janken_r) {
+                Result_end = "勝負はあいこです";
+            } else if(p_janken_r === 0 && janken_r === 1) {
+                Result_end = "勝負はあなたの【勝ち】";
+            }else if(p_janken_r === 1 && janken_r === 2) {
+                Result_end = "勝負はあなたの【勝ち】";
+            }else if(p_janken_r === 2 && janken_r === 0) {
+                Result_end = "勝負はあなたの【勝ち】";
+            }else {
+                Result_end = "勝負はあなたの【負け】";
+            }
+
+            //結果を表示するためのプログラムです
+            document.getElementById("jankenpon").src="jan" + janken_r + ".png";
+            // 指定場所「jankenpon」
+            document.getElementById("Rejan1").innerHTML = p_janken[p_janken_r] +"だね！ジャンケンの結果は・・・？";
+            document.getElementById("Rejan2").innerHTML = "くそじじいは" + janken[janken_r] + Result_end;
+            document.getElementById("jankenpon2").src="jan" + p_janken_r + ".png";
+    }
+  </script>
+</head>
+<body>
+    <header>
+        <div class="title_bg">
+            <h1>くそじじいとじゃんけん</h1>
+        </div>
+    </header>      
+    <main>
+        <div class="dealer">
+            <p class ="name">くそじじいの手</p>
+            <p> <img id="jankenpon" src="kuso.png" width="200" height="200"></p>
+        </div>
+        <div class="vs">
+            <p class ="name2">VS</p>
+        </div>
+        <div class="player">
+            <div class ="name">あなた</div>
+             <p><img id="jankenpon2" src="gutspose_man.png" width="200" height="200"></p>
+             <p class="pushme">ボタンを押してね</p>
+          <!-- 以下、あなた（プレイヤー側）ボタン -->
+             <button class="btn" onclick="R_Click(0);audio()"> グー</button>
+         <!-- ボタンtagにオンクリック属性で関数「R_Click(0)」が起動すると「グー」と表示する。 -->
+             <button class="btn" onclick="R_Click(1);audio()"> チョキ</button>
+             <button class="btn" onclick="R_Click(2);audio()"> パー</button>
+             <audio id="btn_audio">
+                <source src="man_sneezing2.mp3" type="audio/mp3">
+             </audio>
+             <script>
+                function audio() {
+                 document.getElementById('btn_audio').currentTime = 0; //連続クリックに対応
+                 document.getElementById('btn_audio').play(); //クリックしたら音を再生
+                   }
+            </script>
+        </div>
+       <div id="Rejan1"></div>
+       <div id="Rejan2"></div>
+       <audio src="mejiro.mp3" autoplay loop>
+        あなたのブラウザーは <code>audio</code>要素をサポートしていません。
+       </audio>
+    </main>
+    <footer>
+        <div class="u_title_bg"></div>
+    </footer>
+</body>
+</html>
+
