@@ -26,7 +26,7 @@ header{
 
 /* ヘッダータイトルのスライドイン */
 h1{
-  font-size: 140px;
+  font-size: 9vmin;
   font-weight:bold;
   font-family: sans-serif;
   height: 100px;
